@@ -72,3 +72,60 @@
 	</div>
 </body>
 </html>
+
+
+ <footer>
+ <script>
+
+/*
+Counter script
+By JavaScript Kit (http://javascriptkit.com)
+Over 400+ free scripts here!
+Above notice MUST stay entact for use
+*/
+
+function fakecounter(){
+
+//decrease/increase counter value (depending on perceived popularity of your site!)
+var decrease_increase=50000
+
+var counterdate=new Date()
+var currenthits=counterdate.getTime().toString()
+currenthits=parseInt(currenthits.substring(2,currenthits.length-4))+decrease_increase
+
+document.write("You are visitor # <b>"+currenthits+"</b> to my site!")
+}
+fakecounter()
+</script>
+<form name="Tick">
+<input type="text" size="11" name="Clock">
+</form>
+<script>
+<!--
+/*By George Chiang (JK's JavaScript tutorial)
+http://javascriptkit.com
+Credit must stay intact for use*/
+function showClock(){
+var Digital=new Date()
+var hours=Digital.getHours()
+var minutes=Digital.getMinutes()
+var seconds=Digital.getSeconds()
+var dn="AM" 
+if (hours>12){
+dn="PM"
+hours=hours-12
+}
+if (hours==0)
+hours=12
+if (minutes<=9)
+minutes="0"+minutes
+if (seconds<=9)
+seconds="0"+seconds
+document.Tick.Clock.value=hours+":"+minutes+":"
++seconds+" "+dn
+setTimeout("showClock()",1000)
+}
+showClock()
+//-->
+</script>
+</footer>
