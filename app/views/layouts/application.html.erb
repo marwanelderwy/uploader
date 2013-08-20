@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.middle-upload{
+	padding-left: 310px;
+}
+.all-photos{
+	font-family: bold;
+}
+</style>
+<%= javascript_include_tag "application" %>
+<%= yield :javascript_includes %>
+  <title>PhotoUploader</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+
+			 
+				
+				<ul class="nav">
+				 <img src="logo.png" alt="logo" height="42" width="42">
+					<span class = "all-photos">
+					<%= link_to "All Photos", feed_path %>
+					</span>
+				</ul>
+				<span class = "middle-upload">
+				<%= link_to "Upload", new_status_path, class: "btn btn-success" %>
+				</span>
+				<ul class="nav pull-right">
+					<% if user_signed_in? %>
+						<li><%= link_to "My Profile", return_user_ID(current_user.id)%></li>
+						<li><%= link_to current_user.full_name, edit_user_registration_path %></li>
+						<li><%= link_to "Log Out", logout_path %><li>
+					<% else %>
+						<li><%= link_to "Register", register_path %></li>
+						<li><%= link_to "Log in", login_path %></li>
+					<% end %>
+
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	<div class="container">
+	<div class="row">
+	<div class="span10">
+		<% flash.each do |type, message| %>
+			<div class="alert <%= flash_class type %>">
+				<button class="close" data-dismiss="alert">×</button>
+				<%= message %>
+			</div>
+		<% end %>
+		    
+		<%= yield %>
+	</div>
+	<div style="background-color:gray;position:fixed;right:0px;overflow:scroll-y;" class="span2">
+		<div style="font-weight:bold;font-size:16px;">
+		All Users:
+		</div>
+
+		<% @users.each do |user| %>
+		<strong class = "uname"><%= link_to @user.full_name, return_user_ID(current_user.id) %></strong>
+		<% end %>
+		
+	</div>
+	</div>
+</body>
+</html>

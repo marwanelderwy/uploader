@@ -1,0 +1,7 @@
+<html>
+		<% @AllRates.each do |rate| %>
+		<p>
+		<%= rate.user.full_name + " with rate " + rate.rating_value.to_s + "/5" %>
+	</p>
+		<% end %>
+</html>

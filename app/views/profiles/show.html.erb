@@ -1,0 +1,29 @@
+<head>
+<style>
+.flwrs{
+  font-weight: bold;
+  float: right;
+}
+</style>
+</head> 
+
+
+
+<div class="page-header">
+  <h1><%= @user.full_name %></h1>
+  <div class = "flwrs">
+  Total number of followers <%= @total_followers %> 
+</div>
+</div>
+
+<% if @statuses %>
+  <% @statuses.each do |status| %>
+    <div class="well">
+     <a href= "">
+      <%=link_to image_tag(status.avatar.url(:thumb)), return_ID(status.id) %> </a>
+      <%= status.content %>
+      <hr />
+      <%= link_to time_ago_in_words(status.created_at), status_path(status) %> ago
+    </div>
+  <% end %>
+<% end %>

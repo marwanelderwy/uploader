@@ -1,0 +1,8 @@
+alert("sdfdfsdfsf");
+var allsum = <%= @AllRatingSum %>;
+
+var allcount = <%= @RatingCount %>;
+
+var average = allsum/allcount;
+document.getElementById("hrefrate").innerHTML = allcount;
+document.getElementById("averagerating").innerHTML ="Average rating is " + average ;

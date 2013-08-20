@@ -1,0 +1,8 @@
+
+var allsum = <%= @status.rating_sum %>;
+
+var allcount = <%= @status.rating_count %>;
+
+var average = allsum/allcount;
+document.getElementById("hrefrate").innerHTML = allcount;
+document.getElementById("averagerating").innerHTML ="Average rating is " + average ;

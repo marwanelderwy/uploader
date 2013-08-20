@@ -1,0 +1,162 @@
+<head>
+        
+<style>
+
+.likes{
+  font-weight: bold;
+  float: right;
+}
+#HCB_comment_box #hcb_form_content,
+#HCB_comment_box #hcb_form_name,{
+background-color:#ffd;
+}
+#HCB_comment_box .text-blur {
+color:red;
+}
+#HCB_comment_box .text-focus {
+color:darkred;
+}
+#HCB_comment_box .submit {
+background:none; /* Clear twitter bootstrap style. */
+background-color:green;
+border:1px solid darkgreen;
+color: white;
+}
+
+
+  img {display: block;
+    margin-left: auto;
+    margin-right: auto }
+
+
+
+</style>
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b class ="img" >
+  	 <%= image_tag @status.avatar.url(:medium) %>
+  </b>
+  <div id = "image", style= "visibility: hidden">
+   <%= @status.id %>
+  </div>
+  
+  <div class="btn-group">
+    <%= link_to 'like', like_path , class: "btn", :remote => true %>
+    <%= link_to 'become a fan', follow_path , class: "btn", :remote => true %>
+  </div>
+
+  <div class= "likes" id = "idlikes"> 
+  <%= @likes.count %> people like this 
+  </div> 
+  
+   </p>
+     <br></br>
+   <p>
+  <b>Name:</b>
+  <%= @status.user.full_name %>
+  </p>
+
+<div>
+ <div id="wrapper">
+    <div id="content">
+    
+
+
+
+  <p>
+    <b>Content:</b>
+    <%= @status.content %>
+  </p>
+
+
+
+
+
+        <header>
+
+        </header>
+
+        
+
+  <link href="style1.css" rel="stylesheet" type="text/css"/>
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="/assets/barrating1.js.erb"></script>
+
+    <script type="text/javascript"> 
+  $(function () {
+
+                $('#example-f').barrating('show', {
+                    showValues:false,
+                    showSelectedRating:true
+                });
+        });
+</script>
+
+<div class="input select rating-f">
+            
+           <select id="example-f" name="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+</div>
+  <div>
+
+    <div id = "rated", style= "visibility: hidden">
+      <%= @Rated %>
+    </div>
+  <% if @Rated == 0 %>
+  <div id = "newrate">
+    new rate
+  </div>
+  <br/>
+
+     <% else %>
+   <br/>
+     <% end %>
+
+            <%
+            rating_average = 0
+            unless @status.rating_count == 0
+              rating_average = (@status.rating_sum/@status.rating_count).round(2)
+            end
+            %>
+
+
+             <div id = "averagerating">
+             Average rating is <%= rating_average %>
+            </div>
+            <br/>
+            and
+             <a href = "/totalrates/<%= @status.id %>" id = "hrefrate" >
+     
+                <%= @status.rating_count %>
+              </a> 
+            
+              <%= " people rated it" %>
+
+         
+
+       <br/>
+
+
+<br/>
+        <br>
+  <%= link_to 'Edit', edit_status_path(@status) %> |
+  <%= link_to 'Back', statuses_path %>
+
+
+<!-- begin htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=(""+window.location || hcb_user.PAGE), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=16862&num=10");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end htmlcommentbox.com -->
+
+
